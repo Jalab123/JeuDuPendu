@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace JeuDuPendu
 {
-    public partial class frmPendu : Form
+    public partial class FrmPendu : Form
     {
         /// <summary>
         /// mot à rechercher
@@ -17,12 +17,12 @@ namespace JeuDuPendu
         /// <summary>
         /// maximum d'étapes du pendu
         /// </summary>
-        private int maxPendu = 10;
+        private readonly int maxPendu = 10;
 
         /// <summary>
         /// Initialisation des objets graphiques
         /// </summary>
-        public frmPendu()
+        public FrmPendu()
         {
             InitializeComponent();
         }
@@ -57,7 +57,7 @@ namespace JeuDuPendu
                 // fixe la taille du bouton
                 btn.Size = new Size(sizeButton, sizeButton);
                 // ajout d'une écoute sur le clic du bouton
-                btn.Click += new System.EventHandler(btnAlpha_Click);
+                btn.Click += new System.EventHandler(BtnAlpha_Click);
                 // changement de ligne au bout d'un certain nombre de boutons affichés
                 col++;
                 if (k % nbLettreParLigne == 0)
@@ -101,7 +101,7 @@ namespace JeuDuPendu
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAlpha_Click(object sender, EventArgs e)
+        private void BtnAlpha_Click(object sender, EventArgs e)
         {
             // récupération du bouton concerné par l'événement
             Button btnLettre = ((Button)sender);
@@ -168,7 +168,6 @@ namespace JeuDuPendu
         /// <param name="num"></param>
         private void AfficheImage(int num)
         {
-//            imgPendu.ImageLocation = Application.StartupPath + "/../../Resources/pendu" + num + ".png";
             imgPendu.Image = (Image)Properties.Resources.ResourceManager.GetObject("pendu" + num);
         }
 
@@ -230,7 +229,7 @@ namespace JeuDuPendu
         /// </summary>
         /// <param name="unMot"></param>
         /// <returns></returns>
-        private bool MotCorrect(string unMot)
+        private static bool MotCorrect(string unMot)
         {
             unMot = unMot.ToUpper();
             bool correct = true;
@@ -251,7 +250,7 @@ namespace JeuDuPendu
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void frmPendu_Load(object sender, EventArgs e)
+        private void FrmPendu_Load(object sender, EventArgs e)
         {
             // création des boutons des lettres
             CreeBoutons();
@@ -265,7 +264,7 @@ namespace JeuDuPendu
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void txtMot_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtMot_KeyPress(object sender, KeyPressEventArgs e)
         {
             // validation donc fin de la saisie du mot
             if (e.KeyChar == (char)Keys.Enter)
@@ -299,7 +298,7 @@ namespace JeuDuPendu
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnRejouer_Click(object sender, EventArgs e)
+        private void BtnRejouer_Click(object sender, EventArgs e)
         {
             // préparation des objets graphiques pour la phase 1 (saisie du mot)
             PreparationPhase1();
